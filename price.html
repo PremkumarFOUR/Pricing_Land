@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fictitious Service Pricing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f2f2f2;  
+        }
+
+        #pricing-toggle {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        #pricing-toggle label {
+            cursor: pointer;
+            padding: 10px 15px;
+            background-color: #99c2ff; /
+            border: 1px solid #66a3ff; 
+            border-radius: 10px;
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        #pricing-tables {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .pricing-table {
+            width: 30%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            background-color: #fff; 
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #currency-dropdown, #measurement-dropdown {
+            margin-top: 20px;
+        }
+        #enquiry-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #99c2ff; 
+            border: 1px solid #66a3ff;
+            border-radius: 10px;
+            color: #fff; 
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>MOTION FIBERS</h1>
+        <h2>our price</h2>
+    </center>
+
+    <div id="pricing-toggle">
+        <label onclick="togglePricing('monthly')">Monthly</label>
+        <label onclick="togglePricing('annual')">Annual</label>
+    </div>
+
+
+
+
+
+
+    <div id="currency-dropdown">
+        <label for="currency">Select Currency:</label>
+        <select id="currency" onchange="changeCurrency()">
+            <option value="$">$ (USD)</option>
+            <option value="€">€ (Euro)</option>
+            <option value="£">£ (GBP)</option>
+        </select>
+    </div>
+
+    <div id="measurement-dropdown">
+        <label for="measurement">Select Measurement:</label>
+        <select id="measurement" onchange="changeMeasurement()">
+            <option value="GB">GB</option>
+            <option value="TB">TB</option>
+            <option value="MB">MB</option>
+        </select>
+    </div>
+
+
+
+    
+    <div id="pricing-tables">
+        <div class="pricing-table" id="basic-plan">
+            <h2>Basic Plan</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Storage</td>
+                        <td id="basic-storage"></td>
+                    </tr>
+                    <tr>
+                        <td>Bandwidth</td>
+                        <td id="basic-bandwidth"></td>
+                    </tr>
+                    <tr>
+                        <td>Users</td>
+                        <td id="basic-users"></td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td id="basic-support"></td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td id="basic-price"></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pricing-table" id="premium-plan">
+            <h2>Premium Plan</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Storage</td>
+                        <td id="premium-storage"></td>
+                    </tr>
+                    <tr>
+                        <td>Bandwidth</td>
+                        <td id="premium-bandwidth"></td>
+                    </tr>
+                    <tr>
+                        <td>Users</td>
+                        <td id="premium-users"></td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td id="premium-support"></td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td id="premium-price"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pricing-table" id="pro-plan">
+            <h2>Pro Plan</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Storage</td>
+                        <td id="pro-storage"></td>
+                    </tr>
+                    <tr>
+                        <td>Bandwidth</td>
+                        <td id="pro-bandwidth"></td>
+                    </tr>
+                    <tr>
+                        <td>Users</td>
+                        <td id="pro-users"></td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td id="pro-support"></td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td id="pro-price"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="#enquiry" id="enquiry-button">Book Now</a>
+    <script>
+        function togglePricing(type) {
+            const monthlyLabel = document.querySelector('#pricing-toggle label:first-child');
+            const annualLabel = document.querySelector('#pricing-toggle label:last-child');
+            const basicStorage = document.getElementById('basic-storage');
+            const premiumStorage = document.getElementById('premium-storage');
+            const proStorage = document.getElementById('pro-storage');
+            const basicBandwidth = document.getElementById('basic-bandwidth');
+            const premiumBandwidth = document.getElementById('premium-bandwidth');
+            const proBandwidth = document.getElementById('pro-bandwidth');
+            const basicUsers = document.getElementById('basic-users');
+            const premiumUsers = document.getElementById('premium-users');
+            const proUsers = document.getElementById('pro-users');
+            const basicSupport = document.getElementById('basic-support');
+            const premiumSupport = document.getElementById('premium-support');
+            const proSupport = document.getElementById('pro-support');
+            const basicPrice = document.getElementById('basic-price');
+            const premiumPrice = document.getElementById('premium-price');
+            const proPrice = document.getElementById('pro-price');
+
+            if (type === 'monthly') {
+                monthlyLabel.style.backgroundColor = '#ddd';
+                annualLabel.style.backgroundColor = '#eee';
+
+                // Basic Plan
+                basicStorage.textContent = '100 ' + getMeasurementUnit();
+                basicBandwidth.textContent = 'Unlimited';
+                basicUsers.textContent = '1 User';
+                basicSupport.textContent = 'Basic Support';
+                basicPrice.textContent = getPriceSymbol() + '10/month';
+
+                // Premium Plan
+                premiumStorage.textContent = '200 ' + getMeasurementUnit();
+                premiumBandwidth.textContent = 'Unlimited';
+                premiumUsers.textContent = '5 Users';
+                premiumSupport.textContent = 'Priority Support';
+                premiumPrice.textContent = getPriceSymbol() + '20/month';
+
+                // Pro Plan
+                proStorage.textContent = '500 ' + getMeasurementUnit();
+                proBandwidth.textContent = 'Unlimited';
+                proUsers.textContent = 'Unlimited';
+                proSupport.textContent = '24/7 Premium Support';
+                proPrice.textContent = getPriceSymbol() + '50/month';
+            } else {
+                monthlyLabel.style.backgroundColor = '#eee';
+                annualLabel.style.backgroundColor = '#ddd';
+
+                // Basic Plan
+                basicStorage.textContent = '1200 ' + getMeasurementUnit();
+                basicBandwidth.textContent = 'Unlimited';
+                basicUsers.textContent = '1 User';
+                basicSupport.textContent = 'Basic Support';
+                basicPrice.textContent = getPriceSymbol() + '100/year';
+
+                // Premium Plan
+                premiumStorage.textContent = '2400 ' + getMeasurementUnit();
+                premiumBandwidth.textContent = 'Unlimited';
+                premiumUsers.textContent = '5 Users';
+                premiumSupport.textContent = 'Priority Support';
+                premiumPrice.textContent = getPriceSymbol() + '200/year';
+
+                // Pro Plan
+                proStorage.textContent = '6000 ' + getMeasurementUnit();
+                proBandwidth.textContent = 'Unlimited';
+                proUsers.textContent = 'Unlimited';
+                proSupport.textContent = '24/7 Premium Support';
+                proPrice.textContent = getPriceSymbol() + '500/year';
+            }
+        }
+
+        function changeCurrency() {
+            togglePricing(getSelectedPricingType());
+        }
+
+        function changeMeasurement() {
+            togglePricing(getSelectedPricingType());
+        }
+
+        function getSelectedPricingType() {
+            const monthlyLabel = document.querySelector('#pricing-toggle label:first-child');
+            return monthlyLabel.style.backgroundColor === 'rgb(221, 221, 221)' ? 'monthly' : 'annual';
+        }
+
+        function getPriceSymbol() {
+            const currencyDropdown = document.getElementById('currency');
+            return currencyDropdown.options[currencyDropdown.selectedIndex].value;
+        }
+
+        function getMeasurementUnit() {
+            const measurementDropdown = document.getElementById('measurement');
+            return measurementDropdown.options[measurementDropdown.selectedIndex].value;
+        }
+
+        // Initial setup
+        togglePricing('monthly');
+    </script>
+
+</body>
+</html>
